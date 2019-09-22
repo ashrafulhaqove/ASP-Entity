@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<!-- Login Page -->
+<div class="login_page_area">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="create_account_area">
+                    <h2 class="caa_heading">Already registered?</h2>
+
+                    @if (((string)Session["CustomerError"] != null) && ((string)Session["CustomerError"] == "CustomerError"))
+                    {
+                        <h4 class="text-danger">Customer doesn't exists.Please try again.</h4>
+                        Session["CustomerError"] = null;
+                    }
+
+                    <div class="caa_form_area">
+
+                        <form action="/authentication/login" method="post">
+
+                            <div class="caa_form_group">
+                                <div class="login_email">
+                                    <label>Email address</label>
+                                    <div class="input-area"><input type="email" name="email" /></div>
+                                </div>
+                                <div class="login_password">
+                                    <label>Password</label>
+                                    <div class="input-area"><input type="password" name="password" /></div>
+                                </div>
+                                <p class="forgot_password">
+                                    <a href="#" title="Recover your forgotten password" rel="">Forgot your password?</a>
+                                </p>
+                                <button type="submit" id="acc_Login" class="btn btn-default acc_btn">
+                                    <span> <i class="fa fa-lock btn_icon"></i> Sign in </span>
+                                </button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="create_account_area caa_pdngbtm">
+                    <h2 class="caa_heading">Create an account</h2>
+                    <div class="caa_form_area">
+                        <p>Please enter your email address to create an account.</p>
+                        <div class="caa_form_group">
+
+
+
+                            <form action="~/authentication/register" method="post">
+
+                                <div class="caf_form">
+
+                                    <div class="login_email">
+                                        <label>Name</label>
+                                        <div class="input-area">
+                                            <input type="text" name="name" />
+                                        </div>
+                                    </div>
+                                    <div class="login_email">
+                                        <label>Email address</label>
+                                        <div class="input-area">
+                                            <input type="email" name="email" />
+                                        </div>
+                                    </div>
+                                    <div class="login_email">
+                                        <label>Password</label>
+                                        <div class="input-area">
+                                            <input id="password" type="password" name="password" />
+                                        </div>
+                                    </div>
+                                    <div class="login_email">
+                                        <label>Confirm Password</label>
+                                        <div class="input-area">
+                                            <input id="confirm_password" type="password" name="confirm_password" />
+                                        </div>
+                                    </div>
+
+                                   
+                                    <button class="btn btn-default acc_btn" type="submit" id="acc_Create">
+                                        <span> <i class="fa fa-user btn_icon"></i> Next </span>
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+
+                            <script>
+
+                                var password = document.getElementById("password")
+                                    , confirm_password = document.getElementById("confirm_password");
+
+                                function validatePassword() {
+                                    if (password.value != confirm_password.value) {
+                                        confirm_password.setCustomValidity("Passwords Don't Match");
+                                    } else {
+                                        confirm_password.setCustomValidity('');
+                                    }
+                                }
+
+                                password.onchange = validatePassword;
+                                confirm_password.onkeyup = validatePassword;
+
+                            </script>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
