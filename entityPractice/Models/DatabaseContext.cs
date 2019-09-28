@@ -9,5 +9,6 @@ namespace entityPractice.Models
     public class DatabaseContext : DbContext
     {
         public DbSet<Customer> Customer { get; set; }
+        public DbSet<Address> Address { get; set; }
     }
 }
